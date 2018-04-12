@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PathFlag : MonoBehaviour {
 
+    public int number;
+    public int next;
+
 	// Use this for initialization
 	void Start () {
 		
