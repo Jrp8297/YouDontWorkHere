@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(targetNumber);
+        //Debug.Log(targetNumber);
         CalcSteeringForce();
 
         //update velocity
