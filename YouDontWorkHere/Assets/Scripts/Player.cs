@@ -15,7 +15,10 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
+
+	//Currently Update() only contains the functionality to move the player
 	void Update () {
+		//Get position and modify it by the velocity that is gotten from User's key inputs
 		position = player.transform.position;
 		velocity = new Vector3(0,0,0);
 
@@ -35,14 +38,11 @@ public class Player : MonoBehaviour {
 		{
 			velocity.y = speed;
 		}
-		/*if (Input.GetKey("A") && Input.GetKey("D"))
-		{
-			velocity.x = 0;
-		} */
 
 		position += velocity;
 		player.transform.position = position;
 
+		//This was copied code, no Idea what this was originally for
 		//Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 		//pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
 		//pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);

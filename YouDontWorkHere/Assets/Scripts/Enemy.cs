@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private GameObject target;
+
+	//Where the enemy wants to move to next (seek)
     public List<GameObject> flags;
 
     int targetNumber = 0;
@@ -46,7 +48,7 @@ public class Enemy : MonoBehaviour
 
         //update velocity
         velocity += acceleration * Time.deltaTime;
-        //velocity.z = 0;
+        //velocity.z = 1;
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         //orient the transform to face where we going
@@ -57,7 +59,7 @@ public class Enemy : MonoBehaviour
         // the CharacterController moves us subject to physical constraints
         characterController.Move(velocity * Time.deltaTime);
 
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, lockPos, lockPos);
+		transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, lockPos);
 
         //reset acceleration for next cycle
         acceleration = Vector3.zero;
