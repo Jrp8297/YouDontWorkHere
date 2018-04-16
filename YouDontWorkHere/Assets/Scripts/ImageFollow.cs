@@ -8,14 +8,14 @@ public class ImageFollow : MonoBehaviour {
 	public GameObject followMe;
 
 
-	// Use this for initialization
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		Vector3 position = followMe.transform.position;
+
+		//Makes sure if it needs to overlay object in question, it will not match the Z axis of it.
 		position.z = gameObject.transform.position.z;
 		gameObject.transform.position = position;
 	}

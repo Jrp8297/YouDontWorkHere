@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SightLine : MonoBehaviour
 {
+	//Position of THIS gameObject
     Vector3 position;
     Vector3 playerPosition;
     Vector3 offset;
