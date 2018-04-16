@@ -9,9 +9,25 @@ public class Player : MonoBehaviour {
 	float speed = .1f;
 	public GameObject player;
 
+	//Is the player holding an order already?
+	bool hasOrder;
+
+	//FUTURE Orders held? Like if the player can take like 5 orders at once
+	//int ordersHeld = 0;
+
+	//Is the player holding food? Assumes Player can only hold one Table order at a time.
+	bool hasFood;
+
+	bool isColliding = false;
+
+	//If the player is found by waiter, gameOver
+	//Check SightLine.cs to see how this variable is changed.
+	public bool  foundByWaiter = false;
+
 	// Use this for initialization
 	void Start () {
-		
+		hasOrder = false;
+		hasFood = false;
 	}
 	
 	// Update is called once per frame
@@ -42,11 +58,20 @@ public class Player : MonoBehaviour {
 		position += velocity;
 		player.transform.position = position;
 
+		//Check if player is colliding with 
+		checkCollision ();
+
 		//This was copied code, no Idea what this was originally for
 		//Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 		//pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
 		//pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
 		//transform.position = Camera.main.ViewportToWorldPoint(pos);
 
+	}
+
+	void checkCollision (){
+		if (foundByWaiter == true) {
+			Debug.Log ("I have been caught, woe me");
+		}
 	}
 }
