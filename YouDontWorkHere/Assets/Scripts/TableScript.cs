@@ -9,6 +9,7 @@ public class TableScript : MonoBehaviour {
     public bool spawned = false;    
     private Quaternion baseQaut;
 
+
 	// Use this for initialization
 	void Start () {
 		

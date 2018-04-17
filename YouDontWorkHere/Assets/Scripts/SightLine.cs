@@ -93,7 +93,6 @@ public class SightLine : MonoBehaviour
                 isPaused = true;
 
 				//Tells the player that they have been found by the waiter
-				GameObject player = GameObject.Find("Player");
 				player.GetComponent<Player>().foundByWaiter = true;
             }
 

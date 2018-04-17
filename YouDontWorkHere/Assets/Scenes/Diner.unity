@@ -153,6 +153,10 @@ Prefab:
       value: 
       objectReference: {fileID: 1536075395319628, guid: 7dbf429850aabee4e84dae2efa369e36,
         type: 2}
+    - target: {fileID: 1177835720910276, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
+      propertyPath: m_TagString
+      value: Table
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
   m_IsPrefabParent: 0
@@ -207,6 +211,36 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ffd14a0ba7034e4b8cea464d92f7f11, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &747720669 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1177835720910276, guid: 771d65dcbb8013f47a7833bbaba815e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 784313380}
+--- !u!61 &747720670
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 747720669}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.21, y: 0.91}
+    newSize: {x: 10, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.21, y: 0.91}
+  m_EdgeRadius: 0
 --- !u!1001 &784313380
 Prefab:
   m_ObjectHideFlags: 0
@@ -273,6 +307,10 @@ Prefab:
     - target: {fileID: 4460560049644374, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177835720910276, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
+      propertyPath: m_TagString
+      value: Kitchen
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114669617120765538, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
@@ -542,6 +580,36 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ffd14a0ba7034e4b8cea464d92f7f11, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1345341862 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1177835720910276, guid: 771d65dcbb8013f47a7833bbaba815e4,
+    type: 2}
+  m_PrefabInternal: {fileID: 25576300}
+--- !u!61 &1345341863
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1345341862}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10, y: 10}
+    newSize: {x: 10, y: 10}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10}
+  m_EdgeRadius: 0
 --- !u!1 &1548903009 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1211200367358528, guid: 0ffd14a0ba7034e4b8cea464d92f7f11,
@@ -771,9 +839,11 @@ GameObject:
   - component: {fileID: 1739841353}
   - component: {fileID: 1739841352}
   - component: {fileID: 1739841351}
+  - component: {fileID: 1739841354}
+  - component: {fileID: 1739841355}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -790,6 +860,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1739841350}
+  hasOrder: 0
+  hasFood: 0
   foundByWaiter: 0
 --- !u!212 &1739841352
 SpriteRenderer:
@@ -844,6 +916,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1739841354
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739841350}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.27, y: 0.3}
+    newSize: {x: 0.27, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.27, y: 0.3}
+  m_EdgeRadius: 0
+--- !u!50 &1739841355
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739841350}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1784093760 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1211200367358528, guid: 0ffd14a0ba7034e4b8cea464d92f7f11,

@@ -9,14 +9,16 @@ public class Player : MonoBehaviour {
 	float speed = .1f;
 	public GameObject player;
 
+	public enum ObjectType {Table, Kitchen};
+
 	//Is the player holding an order already?
-	bool hasOrder;
+	public bool hasOrder;
 
 	//FUTURE Orders held? Like if the player can take like 5 orders at once
 	//int ordersHeld = 0;
 
 	//Is the player holding food? Assumes Player can only hold one Table order at a time.
-	bool hasFood;
+	public bool hasFood;
 
 	bool isColliding = false;
 
@@ -24,7 +26,7 @@ public class Player : MonoBehaviour {
 	//Check SightLine.cs to see how this variable is changed.
 	public bool  foundByWaiter = false;
 
-	// Use this for initialization
+	//Initialization
 	void Start () {
 		hasOrder = false;
 		hasFood = false;
@@ -32,7 +34,7 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 
-	//Currently Update() only contains the functionality to move the player
+	//Currently Update() only contains the functionality to move the player and check for collision with the Waiter's Field of View
 	void Update () {
 		//Get position and modify it by the velocity that is gotten from User's key inputs
 		position = player.transform.position;
@@ -67,6 +69,38 @@ public class Player : MonoBehaviour {
 		//pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
 		//transform.position = Camera.main.ViewportToWorldPoint(pos);
 
+	}
+
+	//Check for collisions with Tables and Such
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		//Grab the object collidiong with the player
+		GameObject collided = collision.gameObject;
+
+		//Check if they are an enemy, Table, or Kithen
+		if (collided.tag == "Enemy") {
+			//Do nothing for now
+
+		} else if (collided.tag == "Table") {
+			//This is simply testing purposes
+			//If player doesn't have order or food in hands, grab order, if play has food, give food
+			if (!hasOrder && !hasFood) {
+				hasOrder = true;
+				Debug.Log("Took Order");
+			} else if (hasFood) {
+				hasFood = false;
+				Debug.Log("Gave Food");
+			} 
+
+		} else if (collided.tag == "Kitchen") {
+			//This is assuming the player only has one order
+			if (hasOrder == true) {
+				hasOrder = false;
+				Debug.Log("Kitchen Gave Food");
+				//This is assuming the kitchen doesn't need to prepare the food currently.
+				hasFood = true;
+			}
+		}
 	}
 
 	void checkCollision (){

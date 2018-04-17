@@ -17,6 +17,11 @@ public class ConsumerScript : MonoBehaviour {
         mood.a = 1;
         mood.r = 1;
         phaseTimer = 0;
+		//Phases the customer is at
+		//0 is first seated waiting to get their order taken
+		//1 is waiting for food.
+		//2 Eating 
+		//3 Done eating, need to get check collected and food cleared.
         phase = 0;
 	}
 	
