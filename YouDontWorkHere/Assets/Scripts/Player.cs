@@ -9,13 +9,16 @@ public class Player : MonoBehaviour {
 	float speed = .1f;
 	public GameObject player;
 
-	public enum ObjectType {Table, Kitchen};
+    public Sprite[] moveSprites;
 
-	//Is the player holding an order already?
-	public bool hasOrder;
+    //At the moment, food and orders do not discriminate between tables. This restraunt only serves one item
+
+    //Is the player holding an order already?
+    public bool hasOrder;
 
 	//FUTURE Orders held? Like if the player can take like 5 orders at once
-	//int ordersHeld = 0;
+	int ordersHeld = 0;
+    const int MAX_ORDERS = 5;
 
 	//Is the player holding food? Assumes Player can only hold one Table order at a time.
 	public bool hasFood;
@@ -42,19 +45,23 @@ public class Player : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.A))
 		{
+            gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[0];
 			velocity.x = -speed;
 		}
 		if (Input.GetKey(KeyCode.D))
 		{
-			velocity.x = speed;
+            gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[2];
+            velocity.x = speed;
 		}
 		if (Input.GetKey(KeyCode.S))
 		{
-			velocity.y = -speed;
+            gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[3];
+            velocity.y = -speed;
 		}
 		if (Input.GetKey(KeyCode.W))
 		{
-			velocity.y = speed;
+            gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[1];
+            velocity.y = speed;
 		}
 
 		position += velocity;
