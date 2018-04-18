@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     int targetNumber = 0;
 
     float lockPos = 0.0f;
+    float rotation = 0.0f;
 
     public float maxSpeed = 6.0f;
     public float maxForce = 3.0f;
@@ -43,23 +44,29 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //Debug.Log(targetNumber);
         CalcSteeringForce();
 
         //update velocity
-        velocity += acceleration * Time.deltaTime;
-        //velocity.z = 1;
+        velocity += acceleration * Time.deltaTime;    
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         //orient the transform to face where we going
         if (velocity != Vector3.zero)
         {
-            transform.forward = velocity.normalized;
+            transform.rotation = Quaternion.identity;
+            rotation = Mathf.Atan2(velocity.x, velocity.y) * 180 / Mathf.PI;
+            Debug.Log(velocity);
+
+
+            transform.Rotate(new Vector3(0, 0, -rotation));
+
         }
         // the CharacterController moves us subject to physical constraints
         characterController.Move(velocity * Time.deltaTime);
 
-		transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, lockPos);
+		
 
         //reset acceleration for next cycle
         acceleration = Vector3.zero;
@@ -88,7 +95,7 @@ public class Enemy : MonoBehaviour
     {
         //find dv, desired velocity
         dv = targetPos - transform.position;
-        if (dv.x < 0.01f && dv.y < 0.01f && dv.x * -1.0f < 0.01f && dv.y * -1.0f < 0.01f)
+        if (dv.x < 0.1f && dv.y < 0.1f && dv.x * -1.0f < 0.1f && dv.y * -1.0f < 0.1f)
         {
             Debug.Log(flags.Count);
             targetNumber++;
