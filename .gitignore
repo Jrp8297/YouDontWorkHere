@@ -36,3 +36,7 @@ Assets/Media/Spider.png.meta
 Assets/Media/Spider.png.meta
 Test_Data/
 *.dll
+
+# Stuff added to fix nonsensical commit requirements
+.git/objects
+*.meta
