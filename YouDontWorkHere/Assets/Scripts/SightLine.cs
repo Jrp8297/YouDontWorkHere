@@ -85,7 +85,7 @@ public class SightLine : MonoBehaviour
         myRenderer.SetPosition(3, rightPos);
 
 
-        if (offset.sqrMagnitude < Radius * Radius)//Circle Collision Check;
+        if ((offset.sqrMagnitude-9) < Radius * Radius)//Circle Collision Check;
         {
             if (SightLineCheck())
             {
