@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
         {
             transform.rotation = Quaternion.identity;
             rotation = Mathf.Atan2(velocity.x, velocity.y) * 180 / Mathf.PI;
-            Debug.Log(velocity);
+            //Debug.Log(velocity);
 
 
             transform.Rotate(new Vector3(0, 0, -rotation));
