@@ -39,6 +39,5 @@ Test_Data/
 
 # Stuff added to fix nonsensical commit requirements
 .git/objects
-*.meta
 Library/
 Temp/
