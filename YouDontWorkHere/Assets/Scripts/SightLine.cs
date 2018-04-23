@@ -53,7 +53,7 @@ public class SightLine : MonoBehaviour
         // Vector3 playerToMonster = playerPosition - position;
         // playerPosition = playerPosition - (playerToMonster.normalized * .35f);
         offset = playerPosition - position;
-        offsetAngle = gameObject.transform.rotation.eulerAngles.z;
+       // offsetAngle = gameObject.transform.rotation.eulerAngles.z;
 
 
 
