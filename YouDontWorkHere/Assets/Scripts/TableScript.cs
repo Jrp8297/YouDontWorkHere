@@ -24,7 +24,8 @@ public class TableScript : MonoBehaviour {
             if (timerCur > timerMax)
             {//compare to max value
                 Vector3 tempPos = gameObject.transform.position;
-                tempPos.y += 4;
+                tempPos.x += 1.5f;
+                tempPos.y += 1;
                 Instantiate(ConsumerPrefab, tempPos, baseQaut, gameObject.transform);//create a consumer above the table
                 timerCur = 0;
                 spawned = true;
