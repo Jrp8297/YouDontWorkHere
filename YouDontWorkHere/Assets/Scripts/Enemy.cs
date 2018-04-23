@@ -9,106 +9,95 @@ public class Enemy : MonoBehaviour
 	//Where the enemy wants to move to next (seek)
     public List<GameObject> flags;
 
-    int targetNumber = 0;
+    int curNumber = 0;
+    float timer = 0.0f;
+    Vector3 direction;
 
     float lockPos = 0.0f;
     float rotation = 0.0f;
 
     public float maxSpeed = 6.0f;
-    public float maxForce = 3.0f;
-    public float mass = 1.0f;
-    public float radius = 1.0f;
 
-    public float seekWt = 75.0f;
 
-    protected CharacterController characterController;
-    protected Vector3 acceleration; //change in velocity per second
-    protected Vector3 velocity;     //change in position per second
-    protected Vector3 dv;           //desired velocity
-    public Vector3 Velocity
-    {
-        get { return velocity; }
-        set { velocity = value; }
-    }
-
+    public enum EnemyState { Idle, Seeking, Serving, Returning};
+    public EnemyState myState;
+    
+    
+   
     // Use this for initialization
     void Start()
     {
-        target = flags[0];
-        acceleration = Vector3.zero;
-        velocity = transform.forward;
-
-        characterController = GetComponent<CharacterController>();
+        myState = EnemyState.Idle;        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        switch (myState)
+        {
+            case EnemyState.Idle:
+                //This server is in their little station. Have them run idle animations.
+                break;
+
+            case EnemyState.Seeking:
+                direction = Vector3.ClampMagnitude( gameObject.transform.position - flags[curNumber + 1].transform.position, maxSpeed);
+               
+                if(direction.magnitude <= .5f)
+                {//if we are close enough to the next flag
+                    if(curNumber == flags.Count)
+                    {// if its the last flag, go to our Serving state
+                        myState = EnemyState.Serving;
+                        timer = 1.0f;
+                    }
+                    else
+                    {//otherwise, just incriment the current index of the flags array
+                        curNumber++;
+
+                    }
+                }
+
+                //This server is heading towards a customer. They will follow their path in current order.
+                break;
+
+            case EnemyState.Serving:
+                timer -= Time.deltaTime;
+                //This server is actively interfacing with a customer, Have them idle for about a second for now.
+                if(timer <= 0)
+                {
+                    myState = EnemyState.Returning;
+                    curNumber = flags.Count;
+                }
+                break;
+            case EnemyState.Returning:
+                //This server has finished their task and is returning to their station.
+                //go through your Flags in reverse order.
+
+                direction = Vector3.ClampMagnitude(gameObject.transform.position - flags[curNumber - 1].transform.position, maxSpeed);
+
+                if (direction.magnitude <= .5f)
+                {//if we are close enough to the next flag
+                    if (curNumber == 0)
+                    {// if its the last flag, go to our idle  state
+                        myState = EnemyState.Idle;
+                    }
+                    else
+                    {//otherwise, just incriment the current index of the flags array
+                        curNumber--;
+
+                    }
+                }
+
+                break;
+
+
+
+
+        }
+       
         
-        //Debug.Log(targetNumber);
-        CalcSteeringForce();
-
-        //update velocity
-        velocity += acceleration * Time.deltaTime;    
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-
-        //orient the transform to face where we going
-        if (velocity != Vector3.zero)
-        {
-            transform.rotation = Quaternion.identity;
-            rotation = Mathf.Atan2(velocity.x, velocity.y) * 180 / Mathf.PI;
-            //Debug.Log(velocity);
-
-
-            transform.Rotate(new Vector3(0, 0, -rotation));
-
-        }
-        // the CharacterController moves us subject to physical constraints
-        characterController.Move(velocity * Time.deltaTime);
-
-		
-
-        //reset acceleration for next cycle
-        acceleration = Vector3.zero;
-
+      
     }
 
-    protected void CalcSteeringForce()
-    {
-        Vector3 force = Vector3.zero;
-
-        //seek target
-        force += seekWt * Seek(target.transform.position);
-
-        //limit force to maxForce and apply
-        force = Vector3.ClampMagnitude(force, maxForce);
-        ApplyForce(force);
-
-    }
-
-    protected void ApplyForce(Vector3 steeringForce)
-    {
-        acceleration += steeringForce / mass;
-    }
-
-    protected Vector3 Seek(Vector3 targetPos)
-    {
-        //find dv, desired velocity
-        dv = targetPos - transform.position;
-        if (dv.x < 0.1f && dv.y < 0.1f && dv.x * -1.0f < 0.1f && dv.y * -1.0f < 0.1f)
-        {
-            Debug.Log(flags.Count);
-            targetNumber++;
-            if(targetNumber > flags.Count - 1)
-            {
-                targetNumber = 0;
-            }
-            target = flags[targetNumber];
-            dv = target.transform.position - transform.position;
-        }
-        dv = dv.normalized * maxSpeed;  //scale by maxSpeed
-        dv -= velocity;
-        //dv.z = 0;                       // only steer in the x/z plane
-        return dv;
-    }
+  
 }
