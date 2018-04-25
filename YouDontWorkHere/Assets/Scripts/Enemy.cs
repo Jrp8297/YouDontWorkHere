@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public SightLine mySight;
 
 	//Where the enemy wants to move to next (seek)
-    public List<GameObject> flags;
+    public GameObject [] flags;
 
     public int curNumber = 0;
     float timer = 0.0f;

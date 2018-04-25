@@ -11,6 +11,7 @@ public class ConsumerScript : MonoBehaviour {
     Color mood;
     private Quaternion baseQaut;
     bool eating;
+    public bool Idling = true;
 
 
     // Use this for initialization
@@ -31,11 +32,21 @@ public class ConsumerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         phaseTimer += Time.deltaTime;
-        if(phaseTimer > 4)
+
+        if (phaseTimer > 4)
         {
-            phaseTimer = 0;
-            phase += 1;
+            if (!Idling && phaseTimer < 8)
+            {//prevent characters from just moving through various levels
+                phaseTimer = 0;
+                phase += 1;
+            }
+            else if(phaseTimer > 8)
+            {//If we have waited to long to get our stuff.
+                myTable.SendRequest();
+            }
+          
         }
 
 

@@ -5,11 +5,13 @@ using UnityEngine;
 public class TableScript : MonoBehaviour {
     public GameObject ConsumerPrefab;
     public GameObject FoodPrefab;
+    public BreakRoom WaiterZone;
     public float timerMax;
     public float timerCur;
     public bool spawned = false;    
     private Quaternion baseQaut;
     public bool eating = true;
+    public GameObject [] myFlags; // store the directions to get to this table
 
 
 	// Use this for initialization
@@ -39,4 +41,9 @@ public class TableScript : MonoBehaviour {
             }
         }
 	}
+
+    public void SendRequest()
+    {
+        WaiterZone.RequestAdd(this);
+    }
 }
