@@ -11,6 +11,7 @@ public class ConsumerScript : MonoBehaviour {
     Color mood;
     private Quaternion baseQaut;
     bool eating;
+    bool requestSent = false;
     public bool Idling = true;
 
 
@@ -42,9 +43,10 @@ public class ConsumerScript : MonoBehaviour {
                 phaseTimer = 0;
                 phase += 1;
             }
-            else if(phaseTimer > 8)
+            else if(phaseTimer > 8 && !requestSent)
             {//If we have waited to long to get our stuff.
                 myTable.SendRequest();
+                requestSent = true;
             }
           
         }

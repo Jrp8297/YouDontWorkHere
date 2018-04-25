@@ -9,6 +9,7 @@ public class BreakRoom : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        pendingOrders = new Queue<TableScript>();
 		
 	}
 	
@@ -20,6 +21,7 @@ public class BreakRoom : MonoBehaviour {
     public void RequestAdd(TableScript incTable)
     {
         pendingOrders.Enqueue(incTable);
+        Debug.Log("added request #"  + pendingOrders.Count);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

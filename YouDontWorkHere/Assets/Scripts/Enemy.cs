@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
                 Debug.Log(flags[curNumber].transform.position);
                 if(direction.magnitude <= .5f)
                 {//if we are close enough to the next flag
-                    if(curNumber == flags.Count-1)
+                    if(curNumber == flags.Length - 1)
                     {// if its the last flag, go to our Serving state
                         myState = EnemyState.Serving;
                         timer = 1.0f;
@@ -67,13 +67,13 @@ public class Enemy : MonoBehaviour
                 if(timer <= 0)
                 {
                     myState = EnemyState.Returning;
-                    curNumber = flags.Count;
+                    curNumber = flags.Length;
                 }
                 break;
             case EnemyState.Returning:
-                if(curNumber >= flags.Count)
+                if(curNumber >= flags.Length)
                 {
-                    curNumber = flags.Count - 1; 
+                    curNumber = flags.Length - 1; 
                 }
                 //This server has finished their task and is returning to their station.
                 //go through your Flags in reverse order.
