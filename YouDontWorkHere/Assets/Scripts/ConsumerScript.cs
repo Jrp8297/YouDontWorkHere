@@ -7,11 +7,15 @@ public class ConsumerScript : MonoBehaviour {
     public int phase =0;
     SpriteRenderer myRenderer;
     TableScript myTable;
+    public GameObject food;
     Color mood;
+    private Quaternion baseQaut;
+    bool eating;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        eating = false;
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
         myTable = gameObject.GetComponentInParent<TableScript>();
         mood.a = 1;
@@ -52,6 +56,7 @@ public class ConsumerScript : MonoBehaviour {
         }
         if (phase == 2)
         {
+            Instantiate(food, new Vector3(transform.position.x - 1.5f, transform.position.y - 1f, -1.0f), baseQaut, gameObject.transform);
             mood.b = (1.0f - (phaseTimer / 4.0f));
             mood.r = (1.0f - (phaseTimer / 4.0f));
             mood.g = 1;

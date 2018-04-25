@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TableScript : MonoBehaviour {
     public GameObject ConsumerPrefab;
+    public GameObject FoodPrefab;
     public float timerMax;
     public float timerCur;
     public bool spawned = false;    
     private Quaternion baseQaut;
+    public bool eating = true;
 
 
 	// Use this for initialization
@@ -27,6 +29,11 @@ public class TableScript : MonoBehaviour {
                 tempPos.x += 1.5f;
                 tempPos.y += 1;
                 Instantiate(ConsumerPrefab, tempPos, baseQaut, gameObject.transform);//create a consumer above the table
+                /*if (eating == true)
+                {
+                    Instantiate(FoodPrefab, new Vector3(tempPos.x - 1.5f, tempPos.y - 1f, -1.0f), baseQaut, gameObject.transform);
+                    eating = false;
+                }*/
                 timerCur = 0;
                 spawned = true;
             }
