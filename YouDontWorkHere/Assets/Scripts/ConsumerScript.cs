@@ -10,6 +10,7 @@ public class ConsumerScript : MonoBehaviour {
     public GameObject food;
     Color mood;
     private Quaternion baseQaut;
+    bool hasPlate;
     bool eating;
     bool requestSent = false;
     public bool Idling = true;
@@ -69,7 +70,12 @@ public class ConsumerScript : MonoBehaviour {
         }
         if (phase == 2)
         {
-            Instantiate(food, new Vector3(transform.position.x - 1.5f, transform.position.y - 1f, -1.0f), baseQaut, gameObject.transform);
+            if(hasPlate == false)
+            {
+                Instantiate(food, new Vector3(transform.position.x - 1.5f, transform.position.y - 1f, -1.0f), baseQaut, gameObject.transform);
+                hasPlate = true;
+            } 
+
             mood.b = (1.0f - (phaseTimer / 4.0f));
             mood.r = (1.0f - (phaseTimer / 4.0f));
             mood.g = 1;
@@ -78,10 +84,23 @@ public class ConsumerScript : MonoBehaviour {
         }
         if (phase >= 3)
         {
+            hasPlate = false;
             myTable.spawned = false;
             Destroy(gameObject);
         }
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            phaseSwitch();
+        }
 
+
+    }
+
+    public void phaseSwitch()
+    {
+            phase++;
+            phaseTimer = 0;
+        
     }
 }
