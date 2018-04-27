@@ -12,6 +12,7 @@ public class TableScript : MonoBehaviour {
     private Quaternion baseQaut;
     public bool eating = true;
     public GameObject [] myFlags; // store the directions to get to this table
+    public int tableNum;
 
 
 	// Use this for initialization

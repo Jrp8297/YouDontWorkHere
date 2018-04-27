@@ -8,7 +8,6 @@ public class Player : MonoBehaviour {
 	Vector3 velocity;
 	float speed = .1f;
 	public GameObject player;
-
     public Sprite[] moveSprites;
 
     //At the moment, food and orders do not discriminate between tables. This restraunt only serves one item
@@ -19,9 +18,10 @@ public class Player : MonoBehaviour {
 	//FUTURE Orders held? Like if the player can take like 5 orders at once
 	int ordersHeld = 0;
     const int MAX_ORDERS = 5;
+    public int orderNum = 0; // which table he's taken an order from; 0 = not a table
 
-	//Is the player holding food? Assumes Player can only hold one Table order at a time.
-	public bool hasFood;
+    //Is the player holding food? Assumes Player can only hold one Table order at a time.
+    public bool hasFood;
 
 	bool isColliding = false;
 
@@ -91,13 +91,15 @@ public class Player : MonoBehaviour {
 		} else if (collided.tag == "Table") {
 			//This is simply testing purposes
 			//If player doesn't have order or food in hands, grab order, if play has food, give food
-			if (!hasOrder && !hasFood) {
+			if (!hasOrder && !hasFood && collided.GetComponentInChildren<ConsumerScript>() != null && orderNum == 0) {
 				hasOrder = true;
 				Debug.Log("Took Order");
-			} else if (hasFood) {
+                orderNum = collided.GetComponent<TableScript>().tableNum;
+			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum) {
 				hasFood = false;
                 collided.GetComponentInChildren<ConsumerScript>().Idling = false;
 				Debug.Log("Gave Food");
+                orderNum = 0;
 			} 
 
 		} else if (collided.tag == "Kitchen") {

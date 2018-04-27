@@ -210,6 +210,11 @@ Prefab:
       propertyPath: WaiterZone
       value: 
       objectReference: {fileID: 207798349}
+    - target: {fileID: 114669617120765538, guid: 771d65dcbb8013f47a7833bbaba815e4,
+        type: 2}
+      propertyPath: tableNum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
   m_IsPrefabParent: 0
@@ -400,6 +405,11 @@ Prefab:
       propertyPath: WaiterZone
       value: 
       objectReference: {fileID: 207798349}
+    - target: {fileID: 114669617120765538, guid: 771d65dcbb8013f47a7833bbaba815e4,
+        type: 2}
+      propertyPath: tableNum
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
   m_IsPrefabParent: 0
@@ -1188,6 +1198,11 @@ Prefab:
       propertyPath: WaiterZone
       value: 
       objectReference: {fileID: 207798349}
+    - target: {fileID: 114669617120765538, guid: 771d65dcbb8013f47a7833bbaba815e4,
+        type: 2}
+      propertyPath: tableNum
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
   m_IsPrefabParent: 0
@@ -1354,6 +1369,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2ac6a6806bc7aae44bc77c309e17d702, type: 3}
   - {fileID: 21300000, guid: 5759e7a100bdfec44a7d9b239415194b, type: 3}
   hasOrder: 0
+  orderNum: 0
   hasFood: 0
   foundByWaiter: 0
 --- !u!212 &1739841352
@@ -1595,6 +1611,11 @@ Prefab:
       propertyPath: WaiterZone
       value: 
       objectReference: {fileID: 207798349}
+    - target: {fileID: 114669617120765538, guid: 771d65dcbb8013f47a7833bbaba815e4,
+        type: 2}
+      propertyPath: tableNum
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 771d65dcbb8013f47a7833bbaba815e4, type: 2}
   m_IsPrefabParent: 0
