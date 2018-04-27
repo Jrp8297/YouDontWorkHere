@@ -24,7 +24,7 @@ public class BreakRoom : MonoBehaviour {
         Debug.Log("added request #"  + pendingOrders.Count);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if(collision.tag == "Enemy")
         {
