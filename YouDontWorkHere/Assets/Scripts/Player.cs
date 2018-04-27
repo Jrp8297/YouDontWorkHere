@@ -96,6 +96,7 @@ public class Player : MonoBehaviour {
 				Debug.Log("Took Order");
 			} else if (hasFood) {
 				hasFood = false;
+                collided.GetComponentInChildren<ConsumerScript>().Idling = false;
 				Debug.Log("Gave Food");
 			} 
 
