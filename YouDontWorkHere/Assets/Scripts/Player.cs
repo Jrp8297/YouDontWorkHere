@@ -92,12 +92,18 @@ public class Player : MonoBehaviour {
 			//This is simply testing purposes
 			//If player doesn't have order or food in hands, grab order, if play has food, give food
 			if (!hasOrder && !hasFood && collided.GetComponentInChildren<ConsumerScript>() != null && orderNum == 0) {
-				hasOrder = true;
-				Debug.Log("Took Order");
-                orderNum = collided.GetComponent<TableScript>().tableNum;
+                if (collided.GetComponentInChildren<ConsumerScript>().phase == 1)
+                {
+                    hasOrder = true;
+                    Debug.Log("Took Order");
+                    orderNum = collided.GetComponent<TableScript>().tableNum;
+                }
 			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum) {
 				hasFood = false;
-                collided.GetComponentInChildren<ConsumerScript>().Idling = false;
+                if (collided.GetComponentInChildren<ConsumerScript>() != null)
+                {
+                    collided.GetComponentInChildren<ConsumerScript>().Idling = false;
+                }
 				Debug.Log("Gave Food");
                 orderNum = 0;
 			} 

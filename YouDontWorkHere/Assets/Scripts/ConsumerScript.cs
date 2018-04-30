@@ -13,7 +13,7 @@ public class ConsumerScript : MonoBehaviour {
     bool hasPlate;
     bool eating;
     bool requestSent = false;
-    public bool Idling = true;
+    public bool Idling = false;
 
 
     // Use this for initialization
@@ -30,6 +30,7 @@ public class ConsumerScript : MonoBehaviour {
 		//2 Eating 
 		//3 Done eating, need to get check collected and food cleared.
         phase = 0;
+        Idling = false;
 	}
 	
 	// Update is called once per frame
@@ -41,6 +42,7 @@ public class ConsumerScript : MonoBehaviour {
         {
             if (!Idling && phaseTimer < 8)
             {//prevent characters from just moving through various levels
+                if(phase == 0) { Idling = true; }
                 phaseTimer = 0;
                 phase += 1;
             }
