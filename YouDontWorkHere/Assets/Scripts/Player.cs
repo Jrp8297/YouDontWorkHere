@@ -69,12 +69,7 @@ public class Player : MonoBehaviour {
 
 		//Check if player is colliding with 
 		checkCollision ();
-
-		//This was copied code, no Idea what this was originally for
-		//Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-		//pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
-		//pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
-		//transform.position = Camera.main.ViewportToWorldPoint(pos);
+		
 
 	}
 
@@ -97,6 +92,7 @@ public class Player : MonoBehaviour {
                     hasOrder = true;
                     Debug.Log("Took Order");
                     orderNum = collided.GetComponent<TableScript>().tableNum;
+                    collided.GetComponentInChildren<ConsumerScript>().Idling = false;
                 }
 			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum) {
 				hasFood = false;
@@ -121,7 +117,7 @@ public class Player : MonoBehaviour {
 
 	void checkCollision (){
 		if (foundByWaiter == true) {
-			Debug.Log ("I have been caught, woe me");
+			Debug.Log ("I have been caught, woe is me");
 		}
 	}
 }

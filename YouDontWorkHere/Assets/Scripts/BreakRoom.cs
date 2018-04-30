@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BreakRoom : MonoBehaviour {
 
-
+    public Enemy waiter;
     public Queue <TableScript> pendingOrders;
 
     // Use this for initialization
@@ -15,7 +15,15 @@ public class BreakRoom : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(pendingOrders.Count > 0)
+        {//if we have an order to give
+            if(waiter.myState == Enemy.EnemyState.Idle)
+            {
+                TableScript dataSource = pendingOrders.Dequeue();
+                waiter.flags = dataSource.myFlags;
+                waiter.myState = Enemy.EnemyState.Seeking;
+            }
+        }
 	}
 
     public void RequestAdd(TableScript incTable)
@@ -23,15 +31,5 @@ public class BreakRoom : MonoBehaviour {
         pendingOrders.Enqueue(incTable);
         Debug.Log("added request #"  + pendingOrders.Count);
     }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        if(collision.tag == "Enemy")
-        {
-            Enemy toAssign = collision.GetComponentInParent<Enemy>();
-            TableScript dataSource = pendingOrders.Dequeue();
-            toAssign.flags = dataSource.myFlags;
-            toAssign.myState = Enemy.EnemyState.Seeking;
-        }
-    }
+  
 }

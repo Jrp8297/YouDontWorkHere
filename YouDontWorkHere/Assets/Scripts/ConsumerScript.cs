@@ -51,6 +51,11 @@ public class ConsumerScript : MonoBehaviour {
                 myTable.SendRequest();
                 requestSent = true;
             }
+            else if (!Idling)
+            {                
+                phaseTimer = 0;
+                phase += 1;
+            }
           
         }
 
