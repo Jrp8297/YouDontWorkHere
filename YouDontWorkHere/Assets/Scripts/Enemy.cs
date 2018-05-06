@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     float lockPos = 0.0f;
     float rotation = 0.0f;
 
-    public float maxSpeed = 1.0f;
+    public float maxSpeed;
 
     public Sprite [] moveSprites;
     public enum EnemyState { Idle, Seeking, Serving, Returning};
@@ -50,9 +50,9 @@ public class Enemy : MonoBehaviour
                 break;
 
             case EnemyState.Seeking:
-                direction = Vector3.ClampMagnitude(flags[curNumber].transform.position - gameObject.transform.position, maxSpeed);
+                direction = Vector3.ClampMagnitude(flags[curNumber].transform.position - gameObject.transform.position, maxSpeed * Time.deltaTime);
                 //Debug.Log(flags[curNumber].transform.position);
-                if(direction.magnitude <= .5f)
+                if(direction.magnitude <= .035f)
                 {//if we are close enough to the next flag
                     if(curNumber == flags.Length - 1)
                     {// if its the last flag, go to our Serving state
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour
 
                     }
                 }
-                gameObject.transform.position += direction * Time.deltaTime;
+                gameObject.transform.position += direction ;
                 //This server is heading towards a customer. They will follow their path in current order.
                 break;
 
@@ -86,9 +86,9 @@ public class Enemy : MonoBehaviour
                 //This server has finished their task and is returning to their station.
                 //go through your Flags in reverse order.
 
-                direction = Vector3.ClampMagnitude(flags[curNumber].transform.position - gameObject.transform.position , maxSpeed);
+                direction = Vector3.ClampMagnitude(flags[curNumber].transform.position - gameObject.transform.position , maxSpeed * Time.deltaTime);
 
-                if (direction.magnitude <= .5f)
+                if (direction.magnitude <= .035f)
                 {//if we are close enough to the next flag
                     if (curNumber == 0)
                     {// if its the last flag, go to our idle  state
@@ -100,27 +100,27 @@ public class Enemy : MonoBehaviour
 
                     }
                 }
-                gameObject.transform.position += direction * Time.deltaTime;
+                gameObject.transform.position += direction;
                 break;
         }
 
         //assign sprite base on direction of movement.
-        if (direction.x > .5f)
+        if (direction.x > .1f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[3];
             mySight.offsetAngle = 270;
         }
-        else if (direction.x < -.5f)
+        else if (direction.x < -.1f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[2];
             mySight.offsetAngle = 90;
         }
-        else if (direction.y > .5f)
+        else if (direction.y > .1f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[0];
             mySight.offsetAngle = 0;
         }
-        else if (direction.y < -.5f)
+        else if (direction.y < -.1f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[1];
             mySight.offsetAngle = 180;
