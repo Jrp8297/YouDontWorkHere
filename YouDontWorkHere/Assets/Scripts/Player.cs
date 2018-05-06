@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -117,7 +118,7 @@ public class Player : MonoBehaviour {
 
 	void checkCollision (){
 		if (foundByWaiter == true) {
-			Debug.Log ("I have been caught, woe is me");
+            SceneManager.LoadScene("Gameover");
 		}
 	}
 }

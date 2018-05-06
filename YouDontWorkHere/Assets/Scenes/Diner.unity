@@ -875,8 +875,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1739841350}
   offsetAngle: 0
-  widthAngle: 70
-  Radius: 3
+  widthAngle: 50
+  Radius: 7
   mat: {fileID: 2100000, guid: 88f6c2c35db377749b16b6d8c8c6a76f, type: 2}
   doRaycast: 0
   raycastingMask:
@@ -933,7 +933,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 946894807}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.82, y: 1.91, z: 15}
+  m_LocalPosition: {x: 6.82, y: 1.91, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 7.929335}
   m_Children: []
   m_Father: {fileID: 0}
