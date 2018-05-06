@@ -12,18 +12,22 @@ public class ConsumerScript : MonoBehaviour {
     private Quaternion baseQaut;
     bool hasPlate;
     bool eating;
+	public bool gaveOrder;
     bool requestSent = false;
     public bool Idling = false;
+	public bool switchPhase = false;
 
 
     // Use this for initialization
     void Start () {
         eating = false;
+		gaveOrder = false;
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
         myTable = gameObject.GetComponentInParent<TableScript>();
         mood.a = 1;
         mood.r = 1;
         phaseTimer = 0;
+
 		//Phases the customer is at
 		//0 is first seated waiting to get their order taken
 		//1 is waiting for food.
@@ -36,15 +40,22 @@ public class ConsumerScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		if (switchPhase == true) {
+			changePhase ();
+		}
+
         phaseTimer += Time.deltaTime;
 
         if (phaseTimer > 4)
         {
             if (!Idling && phaseTimer < 8)
             {//prevent characters from just moving through various levels
-                if(phase == 0) { Idling = true; }
-                phaseTimer = 0;
-                phase += 1;
+				if (phase == 0 || phase == 1) {
+					Idling = true;
+				} else {
+					phaseTimer = 0;
+					phase += 1;
+				}
             }
             else if(phaseTimer > 8 && !requestSent)
             {//If we have waited to long to get our stuff.
@@ -99,16 +110,16 @@ public class ConsumerScript : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            phaseSwitch();
+			changePhase();
         }
 
 
     }
 
-    public void phaseSwitch()
+    public void changePhase()
     {
             phase++;
             phaseTimer = 0;
-        
+			switchPhase = false;
     }
 }
