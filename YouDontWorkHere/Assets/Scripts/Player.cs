@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
                     hasOrder = true;
                     Debug.Log("Took Order");
                     orderNum = collided.GetComponent<TableScript>().tableNum;
-                    collided.GetComponentInChildren<ConsumerScript>().Idling = false;
+                    //collided.GetComponentInChildren<ConsumerScript>().Idling = false;
                 }
 			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum) {
 				hasFood = false;
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour {
 				Debug.Log("Kitchen Gave Food");
 				//This is assuming the kitchen doesn't need to prepare the food currently.
 				hasFood = true;
-			}
+			} 
 		}
 	}
 

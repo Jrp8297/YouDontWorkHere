@@ -77,6 +77,7 @@ public class ConsumerScript : MonoBehaviour {
         }
         if (phase == 2)
         {
+			//This is made to make sure there isn't a continous amount of plates being instantiated.
             if(hasPlate == false)
             {
                 Instantiate(food, new Vector3(transform.position.x - 1.5f, transform.position.y - 1f, -1.0f), baseQaut, gameObject.transform);
