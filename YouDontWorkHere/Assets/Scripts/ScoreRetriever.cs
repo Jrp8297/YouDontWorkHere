@@ -13,6 +13,6 @@ public class ScoreRetriever : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        toDisplay.text = PlayerPrefs.GetInt("playerScore").ToString();
+		toDisplay.text = PlayerPrefs.GetInt("Score").ToString();
     }
 }
