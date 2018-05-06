@@ -105,22 +105,22 @@ public class Enemy : MonoBehaviour
         }
 
         //assign sprite base on direction of movement.
-        if (direction.x > .1f)
+        if (direction.x > .05f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[3];
             mySight.offsetAngle = 270;
         }
-        else if (direction.x < -.1f)
+        else if (direction.x < -.05f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[2];
             mySight.offsetAngle = 90;
         }
-        else if (direction.y > .1f)
+        else if (direction.y > .05f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[0];
             mySight.offsetAngle = 0;
         }
-        else if (direction.y < -.1f)
+        else if (direction.y < -.05f)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = moveSprites[1];
             mySight.offsetAngle = 180;
