@@ -141,18 +141,22 @@ public class Enemy : MonoBehaviour
 			//This is simply testing purposes
 			//If player doesn't have order or food in hands, grab order, if play has food, give food
 			if (!hasOrder && !hasFood && collided.GetComponentInChildren<ConsumerScript>() != null && orderNum == 0) {
-				if (collided.GetComponentInChildren<ConsumerScript>().phase == 1)
+				if (collided.GetComponentInChildren<ConsumerScript>().phase == 0)
 				{
+					collided.GetComponentInChildren<ConsumerScript> ().switchPhase = true;
+					collided.GetComponentInChildren<ConsumerScript> ().gaveOrder = true;
 					hasOrder = true;
 					Debug.Log("Took Order");
 					orderNum = collided.GetComponent<TableScript>().tableNum;
 					//collided.GetComponentInChildren<ConsumerScript>().Idling = false;
 				}
-			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum) {
+			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum && collided.GetComponentInChildren<ConsumerScript> ().gaveOrder == true) {
 				hasFood = false;
 				if (collided.GetComponentInChildren<ConsumerScript>() != null)
 				{
 					collided.GetComponentInChildren<ConsumerScript>().Idling = false;
+					collided.GetComponentInChildren<ConsumerScript> ().switchPhase = true;
+					collided.GetComponentInChildren<ConsumerScript> ().gaveOrder = false;
 				}
 				Debug.Log("Gave Food");
 				orderNum = 0;

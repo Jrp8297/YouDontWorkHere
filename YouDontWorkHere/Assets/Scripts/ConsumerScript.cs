@@ -16,6 +16,7 @@ public class ConsumerScript : MonoBehaviour {
     bool requestSent = false;
     public bool Idling = false;
 	public bool switchPhase = false;
+	public SpriteRenderer waiterBubble;
 
 
     // Use this for initialization
@@ -61,6 +62,9 @@ public class ConsumerScript : MonoBehaviour {
             {//If we have waited to long to get our stuff.
                 myTable.SendRequest();
                 requestSent = true;
+
+				//Make bubble appear until waiter comes by and takes care of me
+				waiterBubble.enabled = true;
             }
             else if (!Idling)
             {                
@@ -121,5 +125,6 @@ public class ConsumerScript : MonoBehaviour {
             phase++;
             phaseTimer = 0;
 			switchPhase = false;
+			waiterBubble.enabled = false;
     }
 }

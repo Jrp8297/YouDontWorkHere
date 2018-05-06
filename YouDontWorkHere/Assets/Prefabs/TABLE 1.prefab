@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2f486e441108b4fa380a9802236895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConsumerPrefab: {fileID: 1536075395319628, guid: 7dbf429850aabee4e84dae2efa369e36,
+  ConsumerPrefab: {fileID: 1053715795647836, guid: c792aa020670db2419c31c3c6c32ce74,
     type: 2}
   FoodPrefab: {fileID: 1799617898370682, guid: 1a4a8aa5c49b9464895eefaa22b78d32, type: 2}
   WaiterZone: {fileID: 0}

@@ -121,7 +121,7 @@ public class Player : MonoBehaviour {
 			//This is assuming the player only has one order
 			if (hasOrder == true) {
 				hasOrder = false;
-				Debug.Log("Kitchen Gave Food");
+
 				//This is assuming the kitchen doesn't need to prepare the food currently.
 				hasFood = true;
 			} 

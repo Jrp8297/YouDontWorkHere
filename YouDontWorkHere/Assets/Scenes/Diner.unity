@@ -154,7 +154,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686991429612998, guid: 5a321fdf37bb5a54d949262139edcb9a, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114738904565039606, guid: 5a321fdf37bb5a54d949262139edcb9a,
         type: 2}
@@ -210,6 +210,12 @@ Prefab:
       propertyPath: myFlags.Array.data[6]
       value: 
       objectReference: {fileID: 1548903009}
+    - target: {fileID: 114738904565039606, guid: 5a321fdf37bb5a54d949262139edcb9a,
+        type: 2}
+      propertyPath: ConsumerPrefab
+      value: 
+      objectReference: {fileID: 1053715795647836, guid: c792aa020670db2419c31c3c6c32ce74,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a321fdf37bb5a54d949262139edcb9a, type: 2}
   m_IsPrefabParent: 0
@@ -354,7 +360,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &207798352
 BoxCollider2D:
@@ -734,7 +740,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686991429612998, guid: 5a321fdf37bb5a54d949262139edcb9a, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114738904565039606, guid: 5a321fdf37bb5a54d949262139edcb9a,
         type: 2}
@@ -785,6 +791,12 @@ Prefab:
       propertyPath: myFlags.Array.data[7]
       value: 
       objectReference: {fileID: 1548903009}
+    - target: {fileID: 114738904565039606, guid: 5a321fdf37bb5a54d949262139edcb9a,
+        type: 2}
+      propertyPath: ConsumerPrefab
+      value: 
+      objectReference: {fileID: 1053715795647836, guid: c792aa020670db2419c31c3c6c32ce74,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a321fdf37bb5a54d949262139edcb9a, type: 2}
   m_IsPrefabParent: 0
@@ -1139,7 +1151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1040259428
 GameObject:
@@ -1379,6 +1391,12 @@ Prefab:
       propertyPath: myFlags.Array.data[5]
       value: 
       objectReference: {fileID: 1548903009}
+    - target: {fileID: 114738904565039606, guid: 5a321fdf37bb5a54d949262139edcb9a,
+        type: 2}
+      propertyPath: ConsumerPrefab
+      value: 
+      objectReference: {fileID: 1053715795647836, guid: c792aa020670db2419c31c3c6c32ce74,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a321fdf37bb5a54d949262139edcb9a, type: 2}
   m_IsPrefabParent: 0
@@ -1491,8 +1509,8 @@ GameObject:
   - component: {fileID: 1154154339}
   - component: {fileID: 1154154338}
   - component: {fileID: 1154154337}
-  - component: {fileID: 1154154336}
   - component: {fileID: 1154154340}
+  - component: {fileID: 1154154336}
   m_Layer: 0
   m_Name: Enemy Collider
   m_TagString: Untagged
@@ -1595,7 +1613,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1154154340
 Rigidbody2D:
@@ -1822,6 +1840,12 @@ Prefab:
       propertyPath: myFlags.Array.data[6]
       value: 
       objectReference: {fileID: 1548903009}
+    - target: {fileID: 114738904565039606, guid: 5a321fdf37bb5a54d949262139edcb9a,
+        type: 2}
+      propertyPath: ConsumerPrefab
+      value: 
+      objectReference: {fileID: 1053715795647836, guid: c792aa020670db2419c31c3c6c32ce74,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5a321fdf37bb5a54d949262139edcb9a, type: 2}
   m_IsPrefabParent: 0
@@ -1962,7 +1986,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4102531577574266, guid: 0ffd14a0ba7034e4b8cea464d92f7f11, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 114552421295732476, guid: 0ffd14a0ba7034e4b8cea464d92f7f11,
         type: 2}
@@ -2148,6 +2172,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dced13b10a1f52a4a9d1123c9760e0d9, type: 3}
   - {fileID: 21300000, guid: 2ac6a6806bc7aae44bc77c309e17d702, type: 3}
   - {fileID: 21300000, guid: 5759e7a100bdfec44a7d9b239415194b, type: 3}
+  playerScore: 0
   hasOrder: 0
   orderNum: 0
   hasFood: 0
