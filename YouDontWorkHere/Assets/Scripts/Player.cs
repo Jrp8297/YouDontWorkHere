@@ -11,6 +11,8 @@ public class Player : MonoBehaviour {
 	public GameObject player;
     public Sprite[] moveSprites;
 
+	public int playerScore = 0;
+
     //At the moment, food and orders do not discriminate between tables. This restraunt only serves one item
 
     //Is the player holding an order already?
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour {
 
 	//Initialization
 	void Start () {
+		
 		hasOrder = false;
 		hasFood = false;
 	}
@@ -107,6 +110,11 @@ public class Player : MonoBehaviour {
                 }
 				Debug.Log("Gave Food");
                 orderNum = 0;
+
+				//INCREASE THE SCORE!! Feel proud of your accomplishments.
+				playerScore++;
+				StoreData ();
+				Debug.Log (playerScore);
 			} 
 
 		} else if (collided.tag == "Kitchen") {
@@ -124,5 +132,16 @@ public class Player : MonoBehaviour {
 		if (foundByWaiter == true) {
             SceneManager.LoadScene("Gameover");
 		}
+	}
+
+	public void StoreData(){
+		PlayerPrefs.SetInt("Score", playerScore);
+		PlayerPrefs.Save();
+
+	}
+
+	void GetData()
+	{
+		playerScore = PlayerPrefs.GetInt("Score", playerScore);
 	}
 }
