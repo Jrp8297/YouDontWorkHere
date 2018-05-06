@@ -19,7 +19,7 @@ public class ImageFollow : MonoBehaviour {
 
 	void Start () {
 		hasFood = false;
-		hasOrder = false;
+		hasOrder = false;	
 	}
 
 	void Update () {
