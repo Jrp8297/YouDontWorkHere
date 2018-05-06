@@ -22,8 +22,16 @@ public class Enemy : MonoBehaviour
     public Sprite [] moveSprites;
     public enum EnemyState { Idle, Seeking, Serving, Returning};
     public EnemyState myState;
+
+	//FUTURE Orders held? Like if the player can take like 5 orders at once
+	int ordersHeld = 0;
+	const int MAX_ORDERS = 5;
+	public int orderNum = 0; // which table he's taken an order from; 0 = not a table
     
-    
+	//Is the enemy holding food? Assumes Enemy can only hold one Table order at a time.
+	public bool hasFood;
+	//Is the enemy holding an order already?
+	public bool hasOrder;
    
     // Use this for initialization
     void Start()
@@ -43,7 +51,7 @@ public class Enemy : MonoBehaviour
 
             case EnemyState.Seeking:
                 direction = Vector3.ClampMagnitude(flags[curNumber].transform.position - gameObject.transform.position, maxSpeed);
-                Debug.Log(flags[curNumber].transform.position);
+                //Debug.Log(flags[curNumber].transform.position);
                 if(direction.magnitude <= .5f)
                 {//if we are close enough to the next flag
                     if(curNumber == flags.Length - 1)
@@ -119,5 +127,46 @@ public class Enemy : MonoBehaviour
         }
     }
 
+	//Check for collisions with Tables and Such
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		//Grab the object colliding with the enemy
+		GameObject collided = collision.gameObject;
+
+		//Check if they are an enemy, Table, or Kithen
+		if (collided.tag == "Enemy") {
+			//Never going to happen currently
+
+		} else if (collided.tag == "Table") {
+			//This is simply testing purposes
+			//If player doesn't have order or food in hands, grab order, if play has food, give food
+			if (!hasOrder && !hasFood && collided.GetComponentInChildren<ConsumerScript>() != null && orderNum == 0) {
+				if (collided.GetComponentInChildren<ConsumerScript>().phase == 1)
+				{
+					hasOrder = true;
+					Debug.Log("Took Order");
+					orderNum = collided.GetComponent<TableScript>().tableNum;
+					//collided.GetComponentInChildren<ConsumerScript>().Idling = false;
+				}
+			} else if (hasFood && orderNum == collided.GetComponent<TableScript>().tableNum) {
+				hasFood = false;
+				if (collided.GetComponentInChildren<ConsumerScript>() != null)
+				{
+					collided.GetComponentInChildren<ConsumerScript>().Idling = false;
+				}
+				Debug.Log("Gave Food");
+				orderNum = 0;
+			} 
+
+		} else if (collided.tag == "Kitchen") {
+			//This is assuming the player only has one order
+			if (hasOrder == true) {
+				hasOrder = false;
+				Debug.Log("Kitchen Gave Food");
+				//This is assuming the kitchen doesn't need to prepare the food currently.
+				hasFood = true;
+			} 
+		}
+	}
   
 }
